@@ -17,11 +17,11 @@ describe('Luhn', () => {
     expect(valid('59')).toEqual(true);
   });
 
-  xtest('a valid Canadian SIN', () => {
+  test('a valid Canadian SIN', () => {
     expect(valid('055 444 285')).toEqual(true);
   });
 
-  xtest('invalid Canadian SIN', () => {
+  test('invalid Canadian SIN', () => {
     expect(valid('055 444 286')).toEqual(false);
   });
 
