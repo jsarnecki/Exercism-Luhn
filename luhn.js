@@ -1,7 +1,5 @@
 
 export const valid = (n) => {
-  //if isNumber() false, return false
-  //strings 1 or less === false
 
   if (n.trim().length < 2) {
     return false;
@@ -9,25 +7,20 @@ export const valid = (n) => {
   
   let numArr = n.split("");
 
-  
-
-  console.log("first", numArr);
-  
   for (let i = 0; i < numArr.length; i++) {
     if (numArr[i] === " ") {
+      // Remove " " as it converts to 0 with Number()
       numArr.splice(i, 1);
     } else if (!Number.isInteger(Number(numArr[i]))) {
+      // Check for non-numbers
       return false;
     }
     numArr[i] = Number(numArr[i]);
+    // Convert all strings to numbers
   }
-  
-  //checks digits from right - reverse?
-  //split into array, remove spaces
-  
-  console.log("second", numArr);
 
   for (let i = numArr.length - 2; i >= 0; i -= 2) {
+    // Loop backwards by 2 thru nums
     let x = numArr[i] * 2;
     if (x > 9) {
       numArr[i] = x - 9
@@ -36,13 +29,7 @@ export const valid = (n) => {
     }
   }
 
-  let count = 0;
-  for (const num of numArr) {
-    count += num;
-  }
-
-  console.log("third", numArr);
-  console.log("count", count)
+  const count = numArr.reduce((a, b) => a + b);
 
   if (count % 10 === 0) {
     return true;
@@ -50,10 +37,4 @@ export const valid = (n) => {
     return false;
   }
 
-
-  
-
-
-  //Double every 2nd number, if they equal over 9, subtract 9
-  //Now add all the numbers together, if it is divisible by 10, true, else false
 };
