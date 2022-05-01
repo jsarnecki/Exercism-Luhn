@@ -7,17 +7,25 @@ export const valid = (n) => {
     return false;
   }
   
-  let numArr = n.split("").map(n => Number(n));
-  for (const num of numArr) {
-    if (!Number.isInteger(num)) {
+  let numArr = n.split("");
+
+  
+
+  console.log("first", numArr);
+  
+  for (let i = 0; i < numArr.length; i++) {
+    if (numArr[i] === " ") {
+      numArr.splice(i, 1);
+    } else if (!Number.isInteger(Number(numArr[i]))) {
       return false;
     }
+    numArr[i] = Number(numArr[i]);
   }
-
+  
   //checks digits from right - reverse?
   //split into array, remove spaces
-
-  console.log("before", numArr);
+  
+  console.log("second", numArr);
 
   for (let i = numArr.length - 2; i >= 0; i -= 2) {
     let x = numArr[i] * 2;
@@ -33,7 +41,7 @@ export const valid = (n) => {
     count += num;
   }
 
-  console.log("after", numArr);
+  console.log("third", numArr);
   console.log("count", count)
 
   if (count % 10 === 0) {
